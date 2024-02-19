@@ -122,6 +122,10 @@ class _HomePageState extends State<HomePage> {
                               inputFormatters: [
                                 KmInputFormatter(),
                               ],
+
+
+
+
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                                 hintText: 'KM INICIAL',
