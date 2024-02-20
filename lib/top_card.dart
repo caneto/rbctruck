@@ -14,16 +14,15 @@ class TopMeuCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
+    return Padding(
       padding: EdgeInsets.all(10.0),
-      child:  Container(
-
+      child: Container(
         decoration: BoxDecoration(
-            borderRadius:  BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(15),
             color: Colors.blue[300],
             boxShadow: [
               BoxShadow(
-                  offset:  Offset(4.0, 4.0),
+                  offset: Offset(4.0, 4.0),
                   color: Colors.blue.shade700,
                   blurRadius: 15.0,
                   spreadRadius: 1.0),
@@ -34,7 +33,6 @@ class TopMeuCard extends StatelessWidget {
                   spreadRadius: 1.0),
             ]),
         height: 180,
-
         child: Padding(
           padding: const EdgeInsets.all(5.0),
           child: Center(
@@ -48,34 +46,43 @@ class TopMeuCard extends StatelessWidget {
                     style: TextStyle(color: Colors.blue[900], fontSize: 16),
                   ),
                 ),
-                Text(
-                   balance,
-                  style: TextStyle(color: Colors.blue[800], fontSize: 40),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      double.parse(balance) < 3.49
+                          ? Icons.arrow_drop_down_circle_sharp
+                          : (double.parse(balance) > 3.49
+                              ? Icons.arrow_circle_up
+                              : Icons.hourglass_empty),
+                      color: double.parse(balance) < 3.49
+                          ? Colors.red
+                          : (double.parse(balance) > 3.49
+                              ? Colors.green
+                              : Colors.black),
+                    ),
+                    Text(
+                      balance,
+                      style: TextStyle(
+                        fontSize: 40,
+                      ),
+                    ),
+                  ],
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 5.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Container(
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.blue[200],
-                        ),
-                        child: Center(
-                          child: Icon(
-                            Icons.arrow_upward_outlined,
-                            color: Colors.green,
-                          ),
-                        ),
-                      ),
                       Row(
                         children: [
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Text("Total Km",style: TextStyle(color: Colors.blue[900]),),
+                              Text(
+                                "Total Km",
+                                style: TextStyle(color: Colors.blue[900]),
+                              ),
                               Text(KmTotal),
                             ],
                           ),
@@ -86,26 +93,13 @@ class TopMeuCard extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              padding: EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.blue[200],
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Icon(
-                                    Icons.arrow_upward_outlined,
-                                    color: Colors.green,
-                                  ),
-                                ],
-                              ),
-                            ),
                             Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("Total Litros", style: TextStyle(color: Colors.blue[900]),),
+                                Text(
+                                  "Total Litros",
+                                  style: TextStyle(color: Colors.blue[900]),
+                                ),
                                 Text(LitrosTotal),
                               ],
                             ),
