@@ -37,29 +37,29 @@ class MyTransation extends StatelessWidget {
                   height: 50,
                   child: Center(
                       child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              child: Center(
-                                child: Icon(Icons.monetization_on),
-                              ),
+                            Row(
+                              children: [
+                                Container(
+                                  child: Center(
+                                    child: Icon(Icons.monetization_on),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(transationMotorista),
+                                ),
+                              ],
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(transationMotorista),
+                            Text(
+                              transationLitros,
                             ),
                           ],
                         ),
-                        Text(
-                          transationLitros,
-                        ),
-                      ],
-                    ),
-                  )),
+                      )),
                 ),
               ),
             )
