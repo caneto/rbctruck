@@ -44,12 +44,12 @@ class TopMeuCard extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    'MÉDIA',
+                    'MÉDIA  KM/H',
                     style: TextStyle(color: Colors.blue[900], fontSize: 16),
                   ),
                 ),
                 Text(
-                  'KM/H'  + balance,
+                   balance,
                   style: TextStyle(color: Colors.blue[800], fontSize: 40),
                 ),
                 Padding(
@@ -106,7 +106,7 @@ class TopMeuCard extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text("Total Litros", style: TextStyle(color: Colors.blue[900]),),
-                                Text(GoogleSheetApi.calculateabastecimento().toString()),
+                                Text(LitrosTotal),
                               ],
                             ),
                           ],

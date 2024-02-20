@@ -275,36 +275,36 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: <Widget>[
             TopMeuCard(
-              balance: (GoogleSheetApi.calculateabastecimento() /
-                      GoogleSheetApi.calculatemanutencao())
-                  .toString(),
-              LitrosTotal: GoogleSheetApi.calculateabastecimento().toString(),
-              KmTotal: GoogleSheetApi.calculatemanutencao().toString(),
+              balance: (GoogleSheetApi.calculoDis() /
+                  GoogleSheetApi.calculoLt())
+                  .toStringAsFixed(2),
+              LitrosTotal: GoogleSheetApi.calculoLt().toString(),
+              KmTotal: GoogleSheetApi.calculoDis().toString(),
             ),
 
             Expanded(
               child: GoogleSheetApi.loading == true
                   ? LoadingCircle()
                   : ListView.builder(
-                      itemCount: GoogleSheetApi.currentTransactions.length,
-                      itemBuilder: (context, index) {
-                        return MyTransation(
-                          transationMotorista:
-                              GoogleSheetApi.currentTransactions[index][0],
-                          transationCaminhao:
-                              GoogleSheetApi.currentTransactions[index][1],
-                          transationKmInicial:
-                              GoogleSheetApi.currentTransactions[index][2],
-                          transationKmFinl:
-                              GoogleSheetApi.currentTransactions[index][3],
-                          transationLitros:
-                              GoogleSheetApi.currentTransactions[index][4],
-                          transationValor: GoogleSheetApi.currentTransactions[index]
-                              [5],
-                          //AbastecimentoOrManutencao:
-                              //GoogleSheetApi.currentTransactions[index][6],
-                        );
-                      }),
+                  itemCount: GoogleSheetApi.currentTransactions.length,
+                  itemBuilder: (context, index) {
+                    return MyTransation(
+                      transationMotorista:
+                      GoogleSheetApi.currentTransactions[index][0],
+                      transationCaminhao:
+                      GoogleSheetApi.currentTransactions[index][1],
+                      transationKmInicial:
+                      GoogleSheetApi.currentTransactions[index][2],
+                      transationKmFinl:
+                      GoogleSheetApi.currentTransactions[index][3],
+                      transationLitros:
+                      GoogleSheetApi.currentTransactions[index][4],
+                      transationValor: GoogleSheetApi.currentTransactions[index]
+                      [5],
+                      //AbastecimentoOrManutencao:
+                      //GoogleSheetApi.currentTransactions[index][6],
+                    );
+                  }),
             ),
             PlusButton(
               function: _newTransaction,

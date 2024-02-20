@@ -3,6 +3,8 @@ import 'package:gsheets/gsheets.dart';
 class GoogleSheetApi {
   //credencias
   //codigo jhonsn GoogleSheets
+
+
   static const _credentials = r'''
 {
   "type": "service_account",
@@ -111,27 +113,22 @@ class GoogleSheetApi {
     ]);
   }
 
-  //função para caulular o total
-  static double calculatemanutencao() {
-    double totalManutencao = 0;
-    for (int i = 0; i < currentTransactions.length; i++) {
-      if (currentTransactions[i][4] == 'litros') {
-        totalManutencao += double.parse(currentTransactions[i][3]);
-      }
+  static double calculoDis() {
+    double totalKm = 0;
+    for (var transaction in currentTransactions) {
+      final kmFinal = double.parse(transaction[4]);
+      final kmInicial = transaction[3] != '' ? double.parse(transaction[3]) : 0;
+      totalKm += kmFinal - kmInicial;
     }
-    return totalManutencao;
+    return totalKm;
   }
 
-  static double calculateabastecimento() {
-    double totalAbastecimento = 0;
-    for (int i = 0; i < currentTransactions.length; i++) {
-      if (currentTransactions[i][5] == 'kmTotal') {
-        totalAbastecimento += double.parse(currentTransactions[i][5]);
-      }
+  static double calculoLt() {
+    double totalLitros = 0;
+    for (var transaction in currentTransactions) {
+      totalLitros += double.parse(transaction[5]);
     }
-
-    return totalAbastecimento;
+    return totalLitros;
   }
-
 
 }
