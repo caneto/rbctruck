@@ -119,18 +119,12 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           Expanded(
                             child: TextFormField(
-                              inputFormatters: [
-                                KmInputFormatter(),
-                              ],
-
-
-
 
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                                 hintText: 'KM INICIAL',
                               ),
-                              keyboardType: TextInputType.text,
+                              keyboardType: TextInputType.number,
                               validator: (text) {
                                 if (text == null || text.isEmpty) {
                                   return 'Digite o km inicial';
@@ -149,14 +143,12 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           Expanded(
                             child: TextFormField(
-                              inputFormatters: [
-                                KmInputFormatter(),
-                              ],
+
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                                 hintText: 'KM FINAL',
                               ),
-                              keyboardType: TextInputType.text,
+                              keyboardType: TextInputType.number,
                               validator: (text) {
                                 if (text == null || text.isEmpty) {
                                   return 'Digite o km final';
@@ -179,7 +171,7 @@ class _HomePageState extends State<HomePage> {
                                 border: OutlineInputBorder(),
                                 hintText: 'LITROS',
                               ),
-                              keyboardType: TextInputType.text,
+                              keyboardType: TextInputType.number,
                               validator: (text) {
                                 if (text == null || text.isEmpty) {
                                   return 'Digite a quantidade de litros abastecido';
@@ -198,14 +190,12 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           Expanded(
                             child: TextFormField(
-                              inputFormatters: [
-                                RealInputFormatter(),
-                              ],
+
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                                 hintText: 'VALOR',
                               ),
-                              keyboardType: TextInputType.text,
+                              keyboardType: TextInputType.number,
                               validator: (text) {
                                 if (text == null || text.isEmpty) {
                                   return 'Digite a valor abastecido';
@@ -275,36 +265,35 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: <Widget>[
             TopMeuCard(
-              balance: (GoogleSheetApi.calculoDis() /
-                  GoogleSheetApi.calculoLt())
-                  .toStringAsFixed(2),
+              balance:
+                  (GoogleSheetApi.getMediaTotal())
+                      .toStringAsFixed(2),
               LitrosTotal: GoogleSheetApi.calculoLt().toString(),
               KmTotal: GoogleSheetApi.calculoDis().toString(),
             ),
-
             Expanded(
               child: GoogleSheetApi.loading == true
                   ? LoadingCircle()
                   : ListView.builder(
-                  itemCount: GoogleSheetApi.currentTransactions.length,
-                  itemBuilder: (context, index) {
-                    return MyTransation(
-                      transationMotorista:
-                      GoogleSheetApi.currentTransactions[index][0],
-                      transationCaminhao:
-                      GoogleSheetApi.currentTransactions[index][1],
-                      transationKmInicial:
-                      GoogleSheetApi.currentTransactions[index][2],
-                      transationKmFinl:
-                      GoogleSheetApi.currentTransactions[index][3],
-                      transationLitros:
-                      GoogleSheetApi.currentTransactions[index][4],
-                      transationValor: GoogleSheetApi.currentTransactions[index]
-                      [5],
-                      //AbastecimentoOrManutencao:
-                      //GoogleSheetApi.currentTransactions[index][6],
-                    );
-                  }),
+                      itemCount: GoogleSheetApi.currentTransactions.length,
+                      itemBuilder: (context, index) {
+                        return MyTransation(
+                          transationMotorista:
+                              GoogleSheetApi.currentTransactions[index][0],
+                          transationCaminhao:
+                              GoogleSheetApi.currentTransactions[index][1],
+                          transationKmInicial:
+                              GoogleSheetApi.currentTransactions[index][2],
+                          transationKmFinl:
+                              GoogleSheetApi.currentTransactions[index][3],
+                          transationLitros:
+                              GoogleSheetApi.currentTransactions[index][4],
+                          transationValor:
+                              GoogleSheetApi.currentTransactions[index][5],
+                          //AbastecimentoOrManutencao:
+                          //GoogleSheetApi.currentTransactions[index][6],
+                        );
+                      }),
             ),
             PlusButton(
               function: _newTransaction,

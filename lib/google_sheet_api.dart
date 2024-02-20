@@ -4,7 +4,6 @@ class GoogleSheetApi {
   //credencias
   //codigo jhonsn GoogleSheets
 
-
   static const _credentials = r'''
 {
   "type": "service_account",
@@ -93,6 +92,13 @@ class GoogleSheetApi {
     //bool _isIncome,
   ) async {
     numberOfTransactions++;
+    //final kmFinalDouble = double.parse(kmFinal);
+    final kmFinalDouble = double.tryParse(kmFinal.replaceAll(",", ".")) ?? 0.0;
+    final kmInicialDouble = kmInicial != ''
+        ? double.tryParse(kmInicial.replaceAll(",", ".")) ?? 0.0
+        : 0;
+    //final kmInicialDouble = kmInicial != '' ? double.parse(kmInicial) : 0;
+    final totalKm = kmFinalDouble - kmInicialDouble;
     currentTransactions.add([
       motorista,
       valor,
@@ -100,6 +106,8 @@ class GoogleSheetApi {
       kmInicial,
       kmFinal,
       litros,
+      totalKm,
+      getMediaTotal(),
       //_isIncome == true ? 'Manutencao' : 'Abastecimento',
     ]);
     await _worksheet!.values.appendRow([
@@ -109,26 +117,42 @@ class GoogleSheetApi {
       kmInicial,
       kmFinal,
       litros,
+      totalKm,
+      getMediaTotal(),
       //_isIncome == true ? 'Manutencao' : 'Abastecimento',
     ]);
   }
 
+//metodo para calcular a quanitdade de km percorrido.
   static double calculoDis() {
     double totalKm = 0;
     for (var transaction in currentTransactions) {
-      final kmFinal = double.parse(transaction[4]);
-      final kmInicial = transaction[3] != '' ? double.parse(transaction[3]) : 0;
+      final kmFinal =
+          double.tryParse(transaction[4].replaceAll(",", ".")) ?? 0.0;
+      final kmInicial = transaction[3] != ''
+          ? double.tryParse(transaction[3].replaceAll(",", ".")) ?? 0.0
+          : 0;
       totalKm += kmFinal - kmInicial;
     }
     return totalKm;
   }
 
+//função para calcular a quantidade de litros consumidos
   static double calculoLt() {
     double totalLitros = 0;
     for (var transaction in currentTransactions) {
-      totalLitros += double.parse(transaction[5]);
+      totalLitros +=
+          double.tryParse(transaction[5].replaceAll(",", ".")) ?? 0.0;
+      //totalLitros += double.parse(transaction[5]);
     }
     return totalLitros;
   }
 
+  //funçõ para calculr a media total
+  static double getMediaTotal() {
+    if (calculoLt() == 0) {
+      return 0;
+    }
+    return calculoDis() / calculoLt();
+  }
 }
