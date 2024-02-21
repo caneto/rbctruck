@@ -7,6 +7,7 @@ class MyTransation extends StatelessWidget {
   final String transationKmInicial;
   final String transationKmFinl;
   final String transationLitros;
+  //final DateTime dateTime;
 
   //final String dinheiro;
   //final String AbastecimentoOrManutencao;
@@ -19,6 +20,7 @@ class MyTransation extends StatelessWidget {
     required this.transationKmInicial,
     required this.transationKmFinl,
     required this.transationLitros,
+   // required this.dateTime,
     //required this.AbastecimentoOrManutencao,
     //required this.dinheiro,
   });
@@ -37,29 +39,29 @@ class MyTransation extends StatelessWidget {
                   height: 50,
                   child: Center(
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
                           children: [
-                            Row(
-                              children: [
-                                Container(
-                                  child: Center(
-                                    child: Icon(Icons.monetization_on),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(transationMotorista),
-                                ),
-                              ],
+                            Container(
+                              child: Center(
+                                child: Icon(Icons.monetization_on),
+                              ),
                             ),
-                            Text(
-                              transationLitros,
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(transationMotorista),
                             ),
                           ],
                         ),
-                      )),
+                        Text(
+                          transationLitros,
+                        ),
+                      ],
+                    ),
+                  )),
                 ),
               ),
             )
