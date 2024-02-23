@@ -50,11 +50,23 @@ class _MyTransationState extends State<MyTransation> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
+                        Row(mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
+                              alignment: Alignment.bottomLeft,
+                              height: 50,
+                              width: 50,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                shape: BoxShape.circle,
+                                color: Colors.blue.shade500,
+                              ),
                               child: Center(
-                                child: Icon(Icons.monetization_on),
+                                child: Text(
+                                  '${double.parse(widget.transactionMediaViagem).toStringAsFixed(2)}',
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 16.0),
+                                ),
                               ),
                             ),
                             Padding(
@@ -106,8 +118,10 @@ class _MyTransationState extends State<MyTransation> {
                     Text("Km Final: ${widget.transationKmFinal}"),
                     Text("Litros Abastecidos: ${widget.transationLitros}"),
                     Text('Km Total: ${widget.transationKmTotal}'),
-                    Text('Media Vigem: ${double.parse(widget.transactionMediaViagem).toStringAsFixed(2)}'),
-                    Text('Preço Diesel: ${double.parse(widget.transactionprecoBomba).toStringAsFixed(2)}'),
+                    Text(
+                        'Media Vigem: ${double.parse(widget.transactionMediaViagem).toStringAsFixed(2)}'),
+                    Text(
+                        'Preço Diesel: ${double.parse(widget.transactionprecoBomba).toStringAsFixed(2)}'),
                   ],
                 ),
               ),
