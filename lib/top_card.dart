@@ -5,9 +5,11 @@ class TopMeuCard extends StatelessWidget {
   final String balance;
   final String KmTotal;
   final String LitrosTotal;
+  final String totalDinheiro;
 
   TopMeuCard(
       {super.key,
+        required this.totalDinheiro,
       required this.KmTotal,
       required this.LitrosTotal,
       required this.balance});
@@ -83,7 +85,7 @@ class TopMeuCard extends StatelessWidget {
                                 "Total Km",
                                 style: TextStyle(color: Colors.blue[900]),
                               ),
-                              Text(KmTotal),
+                              Text('km ' + KmTotal),
                             ],
                           ),
                         ],
@@ -100,7 +102,25 @@ class TopMeuCard extends StatelessWidget {
                                   "Total Litros",
                                   style: TextStyle(color: Colors.blue[900]),
                                 ),
-                                Text(LitrosTotal),
+                                Text('LT '+  LitrosTotal),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Total Gasto",
+                                  style: TextStyle(color: Colors.blue[900]),
+                                ),
+                                Text("R\$ " +totalDinheiro),
                               ],
                             ),
                           ],

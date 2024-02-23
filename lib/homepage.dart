@@ -119,7 +119,6 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           Expanded(
                             child: TextFormField(
-
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                                 hintText: 'KM INICIAL',
@@ -143,7 +142,6 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           Expanded(
                             child: TextFormField(
-
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                                 hintText: 'KM FINAL',
@@ -190,7 +188,6 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           Expanded(
                             child: TextFormField(
-
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                                 hintText: 'VALOR',
@@ -265,11 +262,11 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: <Widget>[
             TopMeuCard(
-              balance:
-                  (GoogleSheetApi.getMediaTotal())
-                      .toStringAsFixed(2),
+              balance: (GoogleSheetApi.getMediaTotal()).toStringAsFixed(2),
               LitrosTotal: GoogleSheetApi.calculoLt().toString(),
               KmTotal: GoogleSheetApi.calculoDis().toString(),
+              totalDinheiro:
+                  GoogleSheetApi.calculoDinheitoTolat().toStringAsFixed(2),
             ),
             Expanded(
               child: GoogleSheetApi.loading == true
@@ -280,16 +277,31 @@ class _HomePageState extends State<HomePage> {
                         return MyTransation(
                           transationMotorista:
                               GoogleSheetApi.currentTransactions[index][0],
-                          transationCaminhao:
-                              GoogleSheetApi.currentTransactions[index][1],
-                          transationKmInicial:
-                              GoogleSheetApi.currentTransactions[index][2],
-                          transationKmFinl:
-                              GoogleSheetApi.currentTransactions[index][3],
-                          transationLitros:
-                              GoogleSheetApi.currentTransactions[index][4],
+
                           transationValor:
+                          GoogleSheetApi.currentTransactions[index][1],
+
+                          transationCaminhao:
+                              GoogleSheetApi.currentTransactions[index][2],
+
+
+                          transationKmInicial:
+                              GoogleSheetApi.currentTransactions[index][3],
+
+                          transationKmFinal:
+                              GoogleSheetApi.currentTransactions[index][4],
+
+                          transationLitros:
                               GoogleSheetApi.currentTransactions[index][5],
+
+                          transationKmTotal:
+                              GoogleSheetApi.currentTransactions[index][6],
+
+                          transactionMediaViagem:
+                              GoogleSheetApi.currentTransactions[index][7],
+
+                          transactionprecoBomba:
+                          GoogleSheetApi.currentTransactions[index][8],
                           //AbastecimentoOrManutencao:
                           //GoogleSheetApi.currentTransactions[index][6],
                         );
