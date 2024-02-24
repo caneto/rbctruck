@@ -53,7 +53,7 @@ class TopMeuCard extends StatelessWidget {
                   children: [
                     Icon(
                       double.parse(balance) < 3.49
-                          ? Icons.arrow_drop_down_circle_sharp
+                          ? Icons.arrow_circle_down
                           : (double.parse(balance) > 3.49
                               ? Icons.arrow_circle_up
                               : Icons.hourglass_empty),

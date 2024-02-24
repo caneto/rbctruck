@@ -31,6 +31,7 @@ class MyTransation extends StatefulWidget {
 
 class _MyTransationState extends State<MyTransation> {
   bool showDetails = false;
+  bool isVisible = true;
 
   @override
   Widget build(BuildContext context) {
@@ -50,14 +51,14 @@ class _MyTransationState extends State<MyTransation> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(mainAxisAlignment: MainAxisAlignment.start,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
                               alignment: Alignment.bottomLeft,
                               height: 50,
                               width: 50,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
                                 shape: BoxShape.circle,
                                 color: Colors.blue.shade500,
                               ),
@@ -79,6 +80,7 @@ class _MyTransationState extends State<MyTransation> {
                           onTap: () {
                             setState(() {
                               showDetails = !showDetails;
+                              isVisible = !isVisible;
                             });
                           },
                           child: Padding(
@@ -91,9 +93,10 @@ class _MyTransationState extends State<MyTransation> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Icon(Icons.visibility_outlined),
+                                    Icon(isVisible ? Icons.visibility_outlined : Icons.visibility_off_outlined),
+
                                   ],
-                                )),
+                                ),),
                               ),
                             ),
                           ),
