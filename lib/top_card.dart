@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rbctruck/google_sheet_api.dart';
 
 
 class TopMeuCard extends StatelessWidget {
@@ -120,7 +121,7 @@ class TopMeuCard extends StatelessWidget {
                                   "Total Gasto",
                                   style: TextStyle(color: Colors.blue[900]),
                                 ),
-                                Text("R\$ " +totalDinheiro),
+                               Text(GoogleSheetApi.getValorTotal().toStringAsFixed(2)),
                               ],
                             ),
                           ],

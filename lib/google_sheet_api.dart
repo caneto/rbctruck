@@ -32,8 +32,10 @@ class GoogleSheetApi {
   Future init() async {
     final ss = await _gsheets.spreadsheet(_spreadsheetId);
     _worksheet = ss.worksheetByTitle('Worksheet1');
+    //await loadTransactions();
     countRows();
   }
+
 
   static Future countRows() async {
     while ((await _worksheet!.values
@@ -123,6 +125,9 @@ class GoogleSheetApi {
         : 0;
     final precoBomba = valorDouble /  litrosDouble ;
 
+
+
+
     currentTransactions.add([
       motorista,
       valor,
@@ -133,6 +138,7 @@ class GoogleSheetApi {
       totalKm,
       getMediaTotal(),
       precoBomba,
+      getValorTotal(),
 
       //_isIncome == true ? 'Manutencao' : 'Abastecimento',
     ]);
@@ -146,7 +152,7 @@ class GoogleSheetApi {
       totalKm,
       getMediaTotal(),
       precoBomba,
-
+      getValorTotal(),
       //_isIncome == true ? 'Manutencao' : 'Abastecimento',
     ]);
   }
@@ -165,6 +171,16 @@ class GoogleSheetApi {
     return totalKm;
   }
 
+  //Valor total em reais
+  static double getValorTotal() {
+    double totalValor = 0;
+    for (var transaction in currentTransactions) {
+      final valor = double.tryParse(transaction[1].replaceAll(",", ".")) ?? 0.0;
+      totalValor += valor;
+    }
+    return totalValor;
+  }
+
 //função para calcular a quantidade de litros consumidos
   static double calculoLt() {
     double totalLitros = 0;
@@ -177,16 +193,16 @@ class GoogleSheetApi {
   }
 
   //calculo para obter o total de dinheiro em bsteciemento
-  static double calculoDinheitoTolat() {
-    print(calculoDinheitoTolat);
-    double totalDinheiro = 0;
+  /*static  double calculoDinheitoTolat()   {
+
+     double totalDinheiro = 0;
     for (var transaction in currentTransactions) {
       totalDinheiro +=
           double.tryParse(transaction[1].replaceAll(",", ".")) ?? 0.0;
       //calculoDinheitoTolat += double.parse(transaction[5]);
     }
-    return totalDinheiro;
-  }
+    return  totalDinheiro;
+  }*/
 
   //funçõ para calculr a media total
   static double getMediaTotal() {
@@ -195,6 +211,10 @@ class GoogleSheetApi {
     }
     return calculoDis() / calculoLt();
   }
+
+
+
+
 
   //nova função para obter o a media da viagem
 
@@ -206,5 +226,5 @@ class GoogleSheetApi {
     return valor / litros;
   }
 
-//recuperando os texto digitados
+
 }

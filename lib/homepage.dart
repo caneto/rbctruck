@@ -123,7 +123,7 @@ class _HomePageState extends State<HomePage> {
                                 border: OutlineInputBorder(),
                                 hintText: 'KM INICIAL',
                               ),
-                              keyboardType: TextInputType.number,
+                              keyboardType: TextInputType.numberWithOptions(),
                               validator: (text) {
                                 if (text == null || text.isEmpty) {
                                   return 'Digite o km inicial';
@@ -146,7 +146,7 @@ class _HomePageState extends State<HomePage> {
                                 border: OutlineInputBorder(),
                                 hintText: 'KM FINAL',
                               ),
-                              keyboardType: TextInputType.number,
+                              keyboardType: TextInputType.numberWithOptions(),
                               validator: (text) {
                                 if (text == null || text.isEmpty) {
                                   return 'Digite o km final';
@@ -169,7 +169,7 @@ class _HomePageState extends State<HomePage> {
                                 border: OutlineInputBorder(),
                                 hintText: 'LITROS',
                               ),
-                              keyboardType: TextInputType.number,
+                              keyboardType: TextInputType.numberWithOptions(),
                               validator: (text) {
                                 if (text == null || text.isEmpty) {
                                   return 'Digite a quantidade de litros abastecido';
@@ -189,10 +189,11 @@ class _HomePageState extends State<HomePage> {
                           Expanded(
                             child: TextFormField(
                               decoration: InputDecoration(
+
                                 border: OutlineInputBorder(),
                                 hintText: 'VALOR',
                               ),
-                              keyboardType: TextInputType.number,
+                              keyboardType: TextInputType.numberWithOptions(),
                               validator: (text) {
                                 if (text == null || text.isEmpty) {
                                   return 'Digite a valor abastecido';
@@ -263,10 +264,10 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             TopMeuCard(
               balance: (GoogleSheetApi.getMediaTotal()).toStringAsFixed(2),
-              LitrosTotal: GoogleSheetApi.calculoLt().toString(),
+              LitrosTotal: GoogleSheetApi.calculoLt().toStringAsFixed(2),
               KmTotal: GoogleSheetApi.calculoDis().toString(),
               totalDinheiro:
-                  GoogleSheetApi.calculoDinheitoTolat().toStringAsFixed(2),
+                 GoogleSheetApi.getValorTotal().toStringAsFixed(2),
             ),
             Expanded(
               child: GoogleSheetApi.loading == true
@@ -302,6 +303,7 @@ class _HomePageState extends State<HomePage> {
 
                           transactionprecoBomba:
                           GoogleSheetApi.currentTransactions[index][8],
+
                           //AbastecimentoOrManutencao:
                           //GoogleSheetApi.currentTransactions[index][6],
                         );
