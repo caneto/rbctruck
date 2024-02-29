@@ -36,7 +36,6 @@ class GoogleSheetApi {
     countRows();
   }
 
-
   static Future countRows() async {
     while ((await _worksheet!.values
             .value(column: 1, row: numberOfTransactions + 1)) !=
@@ -49,10 +48,8 @@ class GoogleSheetApi {
   static Future loadTransactions() async {
     if (_worksheet == null) return;
     for (int i = 1; i < numberOfTransactions; i++) {
-
       final String transactionMotorista =
           await _worksheet!.values.value(column: 1, row: i + 1);
-
 
       final String transactionValor =
           await _worksheet!.values.value(column: 2, row: i + 1);
@@ -69,18 +66,17 @@ class GoogleSheetApi {
           await _worksheet!.values.value(column: 6, row: i + 1);
 
       final String transactionKmTotal =
-      await _worksheet!.values.value(column: 7, row: i + 1);
+          await _worksheet!.values.value(column: 7, row: i + 1);
 
       final String transactionMediaViagem =
-      await _worksheet!.values.value(column: 8, row: i + 1);
+          await _worksheet!.values.value(column: 8, row: i + 1);
 
       final String transactionprecoBomba =
-      await _worksheet!.values.value(column: 9, row: i + 1);
-
+          await _worksheet!.values.value(column: 9, row: i + 1);
 
 //esse final strig trabsationType si refere ao km total insirio na planilha
       //final String transactionType =
-          //await _worksheet!.values.value(column: 7, row: i + 1);
+      //await _worksheet!.values.value(column: 7, row: i + 1);
 
       if (currentTransactions.length < numberOfTransactions) {
         currentTransactions.add([
@@ -93,7 +89,6 @@ class GoogleSheetApi {
           transactionKmTotal,
           transactionMediaViagem,
           transactionprecoBomba,
-
         ]);
       }
     }
@@ -121,12 +116,9 @@ class GoogleSheetApi {
 
     //dinheiro divido por litro para ter o valor do litro
     final valorDouble = double.tryParse(valor.replaceAll(",", ".")) ?? 0.0;
-    final litrosDouble = valor !=''? double.tryParse(litros.replaceAll(",", ".")) ?? 0.0
-        : 0;
-    final precoBomba = valorDouble /  litrosDouble ;
-
-
-
+    final litrosDouble =
+        valor != '' ? double.tryParse(litros.replaceAll(",", ".")) ?? 0.0 : 0;
+    final precoBomba = valorDouble / litrosDouble;
 
     currentTransactions.add([
       motorista,
@@ -192,18 +184,6 @@ class GoogleSheetApi {
     return totalLitros;
   }
 
-  //calculo para obter o total de dinheiro em bsteciemento
-  /*static  double calculoDinheitoTolat()   {
-
-     double totalDinheiro = 0;
-    for (var transaction in currentTransactions) {
-      totalDinheiro +=
-          double.tryParse(transaction[1].replaceAll(",", ".")) ?? 0.0;
-      //calculoDinheitoTolat += double.parse(transaction[5]);
-    }
-    return  totalDinheiro;
-  }*/
-
   //funçõ para calculr a media total
   static double getMediaTotal() {
     if (calculoLt() == 0) {
@@ -211,10 +191,6 @@ class GoogleSheetApi {
     }
     return calculoDis() / calculoLt();
   }
-
-
-
-
 
   //nova função para obter o a media da viagem
 
@@ -225,6 +201,4 @@ class GoogleSheetApi {
     }
     return valor / litros;
   }
-
-
 }

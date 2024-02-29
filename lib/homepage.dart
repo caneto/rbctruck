@@ -189,7 +189,6 @@ class _HomePageState extends State<HomePage> {
                           Expanded(
                             child: TextFormField(
                               decoration: InputDecoration(
-
                                 border: OutlineInputBorder(),
                                 hintText: 'VALOR',
                               ),
@@ -266,8 +265,7 @@ class _HomePageState extends State<HomePage> {
               balance: (GoogleSheetApi.getMediaTotal()).toStringAsFixed(2),
               LitrosTotal: GoogleSheetApi.calculoLt().toStringAsFixed(2),
               KmTotal: GoogleSheetApi.calculoDis().toString(),
-              totalDinheiro:
-                 GoogleSheetApi.getValorTotal().toStringAsFixed(2),
+              totalDinheiro: GoogleSheetApi.getValorTotal().toStringAsFixed(2),
             ),
             Expanded(
               child: GoogleSheetApi.loading == true
@@ -280,11 +278,10 @@ class _HomePageState extends State<HomePage> {
                               GoogleSheetApi.currentTransactions[index][0],
 
                           transationValor:
-                          GoogleSheetApi.currentTransactions[index][1],
+                              GoogleSheetApi.currentTransactions[index][1],
 
                           transationCaminhao:
                               GoogleSheetApi.currentTransactions[index][2],
-
 
                           transationKmInicial:
                               GoogleSheetApi.currentTransactions[index][3],
@@ -296,13 +293,13 @@ class _HomePageState extends State<HomePage> {
                               GoogleSheetApi.currentTransactions[index][5],
 
                           transationKmTotal:
-                              GoogleSheetApi.currentTransactions[index][6],
+                          (GoogleSheetApi.currentTransactions[index][6]).toString(),
 
                           transactionMediaViagem:
-                              GoogleSheetApi.currentTransactions[index][7],
+                          (GoogleSheetApi.currentTransactions[index][7]).toString(),
 
                           transactionprecoBomba:
-                          GoogleSheetApi.currentTransactions[index][8],
+                          (GoogleSheetApi.currentTransactions[index][8]).toString(),
 
                           //AbastecimentoOrManutencao:
                           //GoogleSheetApi.currentTransactions[index][6],

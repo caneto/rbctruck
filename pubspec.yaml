@@ -40,7 +40,8 @@ dependencies:
   brasil_fields: ^1.14.3
   screenshot: ^1.1.1
   path_provider: ^2.0.1
-  
+
+  persistent_bottom_nav_bar: ^5.0.2
 
 
 dev_dependencies:
