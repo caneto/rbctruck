@@ -1,4 +1,5 @@
 import 'package:gsheets/gsheets.dart';
+import 'package:intl/intl.dart';
 
 class GoogleSheetApi {
   //credencias
@@ -89,6 +90,7 @@ class GoogleSheetApi {
           transactionKmTotal,
           transactionMediaViagem,
           transactionprecoBomba,
+
         ]);
       }
     }
@@ -103,6 +105,8 @@ class GoogleSheetApi {
     String kmInicial,
     String kmFinal,
     String litros,
+
+
     //bool _isIncome,
   ) async {
     numberOfTransactions++;
@@ -131,6 +135,7 @@ class GoogleSheetApi {
       getMediaTotal(),
       precoBomba,
       getValorTotal(),
+
 
       //_isIncome == true ? 'Manutencao' : 'Abastecimento',
     ]);
@@ -201,4 +206,16 @@ class GoogleSheetApi {
     }
     return valor / litros;
   }
+  String formatDate(DateTime date) {
+    var formatter = DateFormat('dd/MM/yyyy');
+    return formatter.format(date);
+  }
+  Future<void> saveDate() async {
+    final now = DateTime.now();
+    final formattedDate = formatDate(now);
+    // Insira seu código para salvar a data formatada (formattedDate) no seu armazenamento local.
+    // Exemplos: SharedPreferences, Hive, FirebaseFirestore, etc.
+  }
+
+
 }

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:intl/intl.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/src/services/text_formatter.dart';
@@ -27,13 +28,15 @@ class _HomePageState extends State<HomePage> {
       _textcontrollerCaminhao.text,
       _textcontrollerKmInicial.text,
       _textcontrollerKmFinal.text,
-      _textcontrollerLitros.text,
+      _textcontrollerLitros.text
+
       //_isIncome,
     );
     setState(() {});
   }
 
   //controladores do imput
+
   final _textcontrollerCaminhao = TextEditingController();
   final _textcontrollerValor = TextEditingController();
   final _textcontrollerKmInicial = TextEditingController();
@@ -59,6 +62,17 @@ class _HomePageState extends State<HomePage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                  TextFormField(
+                    initialValue: obterDataFormatada(),
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Data',
+                    ),
+                    keyboardType: TextInputType.text,
+                  ),
                       SizedBox(
                         height: 5,
                       ),
@@ -314,4 +328,17 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+  String obterDataFormatada() {
+    // Obter data atual
+    DateTime dataAtual = DateTime.now();
+
+    // Formatar data
+    String dataFormatada = DateFormat('dd/MM/yyyy').format(dataAtual);
+
+    // Retornar data formatada
+    return dataFormatada;
+  }
+
+
+
 }
