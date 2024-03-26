@@ -3,37 +3,39 @@ import 'package:rbctruck/google_sheet_api.dart';
 
 class TopMeuCard extends StatelessWidget {
   final String balance;
-  final String KmTotal;
-  final String LitrosTotal;
+  final String kmTotal;
+  final String litrosTotal;
   final String totalDinheiro;
 
-  TopMeuCard(
-      {super.key,
-      required this.totalDinheiro,
-      required this.KmTotal,
-      required this.LitrosTotal,
-      required this.balance});
+  const TopMeuCard({
+    super.key,
+    required this.totalDinheiro,
+    required this.kmTotal,
+    required this.litrosTotal,
+    required this.balance,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(10.0),
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: Colors.blue[300],
-            boxShadow: [
-              BoxShadow(
-                  offset: Offset(4.0, 4.0),
-                  color: Colors.blue.shade700,
-                  blurRadius: 15.0,
-                  spreadRadius: 1.0),
-              BoxShadow(
-                  offset: Offset(-4.0, -4.0),
-                  color: Colors.grey.shade400,
-                  blurRadius: 15.0,
-                  spreadRadius: 1.0),
-            ]),
+          borderRadius: BorderRadius.circular(15),
+          color: Colors.blue[300],
+          boxShadow: [
+            BoxShadow(
+                offset: const Offset(4.0, 4.0),
+                color: Colors.blue.shade700,
+                blurRadius: 15.0,
+                spreadRadius: 1.0),
+            BoxShadow(
+                offset: const Offset(-4.0, -4.0),
+                color: Colors.grey.shade400,
+                blurRadius: 15.0,
+                spreadRadius: 1.0),
+          ],
+        ),
         height: 180,
         child: Padding(
           padding: const EdgeInsets.all(5.0),
@@ -65,7 +67,7 @@ class TopMeuCard extends StatelessWidget {
                     ),
                     Text(
                       balance,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 40,
                       ),
                     ),
@@ -85,7 +87,7 @@ class TopMeuCard extends StatelessWidget {
                                 "Total Km",
                                 style: TextStyle(color: Colors.blue[900]),
                               ),
-                              Text('km ' + KmTotal),
+                              Text('km $kmTotal'),
                             ],
                           ),
                         ],
@@ -102,7 +104,7 @@ class TopMeuCard extends StatelessWidget {
                                   "Total Litros",
                                   style: TextStyle(color: Colors.blue[900]),
                                 ),
-                                Text('LT ' + LitrosTotal),
+                                Text('LT $litrosTotal'),
                               ],
                             ),
                           ],

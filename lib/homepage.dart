@@ -1,14 +1,14 @@
 import 'dart:async';
+import 'package:brasil_fields/brasil_fields.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
-import 'package:flutter/material.dart';
-import 'package:flutter/src/services/text_formatter.dart';
 import 'package:rbctruck/google_sheet_api.dart';
 import 'package:rbctruck/loading_circle.dart';
 import 'package:rbctruck/plus_button.dart';
 import 'package:rbctruck/top_card.dart';
 import 'package:rbctruck/transation.dart';
-import 'package:brasil_fields/brasil_fields.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
   final _textcontrollerLitros = TextEditingController();
   final _textcontrollerMotorista = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  bool _isIncome = false;
+  final bool _isIncome = false;
 
   //nova transcao
   void _newTransaction() {
@@ -55,32 +55,32 @@ class _HomePageState extends State<HomePage> {
           return StatefulBuilder(builder: (BuildContext context, setState) {
             return SingleChildScrollView(
               child: AlertDialog(
-                title: Text('NOVA TRANSAÇÃO'),
+                title: const Text('NOVA TRANSAÇÃO'),
                 content: SingleChildScrollView(
                   child: Column(
                     children: [
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                   TextFormField(
                     initialValue: obterDataFormatada(),
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: 'Data',
                     ),
                     keyboardType: TextInputType.text,
                   ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Row(
                         children: [
                           Expanded(
                             child: TextFormField(
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
                                 hintText: 'MOTORISTA',
                               ),
@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Row(
@@ -109,7 +109,7 @@ class _HomePageState extends State<HomePage> {
                                 inputFormatters: <TextInputFormatter>[
                                   PlacaVeiculoInputFormatter(),
                                 ],
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
                                   hintText: 'CAMINHÃO',
                                 ),
@@ -126,18 +126,18 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Row(
                         children: [
                           Expanded(
                             child: TextFormField(
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
                                 hintText: 'KM INICIAL',
                               ),
-                              keyboardType: TextInputType.numberWithOptions(),
+                              keyboardType: const TextInputType.numberWithOptions(),
                               validator: (text) {
                                 if (text == null || text.isEmpty) {
                                   return 'Digite o km inicial';
@@ -149,18 +149,18 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Row(
                         children: [
                           Expanded(
                             child: TextFormField(
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
                                 hintText: 'KM FINAL',
                               ),
-                              keyboardType: TextInputType.numberWithOptions(),
+                              keyboardType: const TextInputType.numberWithOptions(),
                               validator: (text) {
                                 if (text == null || text.isEmpty) {
                                   return 'Digite o km final';
@@ -172,18 +172,18 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Row(
                         children: [
                           Expanded(
                             child: TextFormField(
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
                                 hintText: 'LITROS',
                               ),
-                              keyboardType: TextInputType.numberWithOptions(),
+                              keyboardType: const TextInputType.numberWithOptions(),
                               validator: (text) {
                                 if (text == null || text.isEmpty) {
                                   return 'Digite a quantidade de litros abastecido';
@@ -195,18 +195,18 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Row(
                         children: [
                           Expanded(
                             child: TextFormField(
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
                                 hintText: 'VALOR',
                               ),
-                              keyboardType: TextInputType.numberWithOptions(),
+                              keyboardType: const TextInputType.numberWithOptions(),
                               validator: (text) {
                                 if (text == null || text.isEmpty) {
                                   return 'Digite a valor abastecido';
@@ -224,7 +224,7 @@ class _HomePageState extends State<HomePage> {
                 actions: <Widget>[
                   MaterialButton(
                       color: Colors.blue[600],
-                      child: Text(
+                      child: const Text(
                         'Cancelar',
                         style: TextStyle(color: Colors.white),
                       ),
@@ -233,7 +233,7 @@ class _HomePageState extends State<HomePage> {
                       }),
                   MaterialButton(
                       color: Colors.blue[600],
-                      child: Text(
+                      child: const Text(
                         'Entrar',
                         style: TextStyle(color: Colors.white),
                       ),
@@ -255,7 +255,7 @@ class _HomePageState extends State<HomePage> {
 
   void startLoading() {
     timerHasStarted = true;
-    Timer.periodic(Duration(seconds: 1), (timer) {
+    Timer.periodic(const Duration(seconds: 1), (timer) {
       if (GoogleSheetApi.loading == false) {
         setState(() {
           timer.cancel();
@@ -271,59 +271,61 @@ class _HomePageState extends State<HomePage> {
     }
     return Scaffold(
       backgroundColor: Colors.blue[300],
-      body: Padding(
-        padding: const EdgeInsets.all(25.0),
-        child: Column(
-          children: <Widget>[
-            TopMeuCard(
-              balance: (GoogleSheetApi.getMediaTotal()).toStringAsFixed(2),
-              LitrosTotal: GoogleSheetApi.calculoLt().toStringAsFixed(2),
-              KmTotal: GoogleSheetApi.calculoDis().toString(),
-              totalDinheiro: GoogleSheetApi.getValorTotal().toStringAsFixed(2),
-            ),
-            Expanded(
-              child: GoogleSheetApi.loading == true
-                  ? LoadingCircle()
-                  : ListView.builder(
-                      itemCount: GoogleSheetApi.currentTransactions.length,
-                      itemBuilder: (context, index) {
-                        return MyTransation(
-                          transationMotorista:
-                              GoogleSheetApi.currentTransactions[index][0],
-
-                          transationValor:
-                              GoogleSheetApi.currentTransactions[index][1],
-
-                          transationCaminhao:
-                              GoogleSheetApi.currentTransactions[index][2],
-
-                          transationKmInicial:
-                              GoogleSheetApi.currentTransactions[index][3],
-
-                          transationKmFinal:
-                              GoogleSheetApi.currentTransactions[index][4],
-
-                          transationLitros:
-                              GoogleSheetApi.currentTransactions[index][5],
-
-                          transationKmTotal:
-                          (GoogleSheetApi.currentTransactions[index][6]).toString(),
-
-                          transactionMediaViagem:
-                          (GoogleSheetApi.currentTransactions[index][7]).toString(),
-
-                          transactionprecoBomba:
-                          (GoogleSheetApi.currentTransactions[index][8]).toString(),
-
-                          //AbastecimentoOrManutencao:
-                          //GoogleSheetApi.currentTransactions[index][6],
-                        );
-                      }),
-            ),
-            PlusButton(
-              function: _newTransaction,
-            ),
-          ],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(25.0),
+          child: Column(
+            children: <Widget>[
+              TopMeuCard(
+                balance: (GoogleSheetApi.getMediaTotal()).toStringAsFixed(2),
+                litrosTotal: GoogleSheetApi.calculoLt().toStringAsFixed(2),
+                kmTotal: GoogleSheetApi.calculoDis().toString(),
+                totalDinheiro: GoogleSheetApi.getValorTotal().toStringAsFixed(2),
+              ),
+              Expanded(
+                child: GoogleSheetApi.loading == true
+                    ? const LoadingCircle()
+                    : ListView.builder(
+                        itemCount: GoogleSheetApi.currentTransactions.length,
+                        itemBuilder: (context, index) {
+                          return MyTransation(
+                            transationMotorista:
+                                GoogleSheetApi.currentTransactions[index][0],
+        
+                            transationValor:
+                                GoogleSheetApi.currentTransactions[index][1],
+        
+                            transationCaminhao:
+                                GoogleSheetApi.currentTransactions[index][2],
+        
+                            transationKmInicial:
+                                GoogleSheetApi.currentTransactions[index][3],
+        
+                            transationKmFinal:
+                                GoogleSheetApi.currentTransactions[index][4],
+        
+                            transationLitros:
+                                GoogleSheetApi.currentTransactions[index][5],
+        
+                            transationKmTotal:
+                            (GoogleSheetApi.currentTransactions[index][6]).toString(),
+        
+                            transactionMediaViagem:
+                            (GoogleSheetApi.currentTransactions[index][7]).toString(),
+        
+                            transactionprecoBomba:
+                            (GoogleSheetApi.currentTransactions[index][8]).toString(),
+        
+                            //AbastecimentoOrManutencao:
+                            //GoogleSheetApi.currentTransactions[index][6],
+                          );
+                        }),
+              ),
+              PlusButton(
+                function: _newTransaction,
+              ),
+            ],
+          ),
         ),
       ),
     );
